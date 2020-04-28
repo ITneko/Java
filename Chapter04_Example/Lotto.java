@@ -13,18 +13,29 @@ import java.util.Random;
 public class Lotto {
 
 	public static void main(String[] args) {
-		
-		int randValue[] = new int[5];
-		int i;
-		
+
+		int[] lotto = { 0, 0, 0, 0, 0, 0 };
+		int index = 0;
+
 		while (true) {
-			i = 0;
-			randValue[i] = (int) (Math.random() * 45) + 1;
-			for(int j=0; j<=randValue.length; j++) {
-				
+			int rand = (int) (Math.random() * 45) + 1;
+			int i = 0;
+			for (i = 0; i < index; i++) {
+				if (rand == lotto[i]) {
+					break;
+				}
 			}
+			if (index == i) {
+				lotto[index++] = rand;
+			}
+			if (index > 5)
+				break;
 
 		}
+		for (int i = 0; i < lotto.length; i++) {
+			System.out.print(lotto[i] + "\t");
+		}
+
 	}
 
 }

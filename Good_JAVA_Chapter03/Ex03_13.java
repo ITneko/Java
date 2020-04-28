@@ -1,4 +1,4 @@
-package ExampleJava20_04_13;
+package Good_JAVA_Chapter03;
 
 public class Ex03_13 {
 

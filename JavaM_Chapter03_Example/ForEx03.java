@@ -8,18 +8,17 @@ public class ForEx03 {
 
 		for (i = 1; i < 9; i += 3) {
 			for (j = 1; j <= 9; ++j) {
-				if(j==1) {
-					for(k=i; k<=i+2; k++)
-						System.out.printf("%d단\t\t",k);
+				if (j == 1) {
+					for (k = i; k <= i + 2; k++)
+						System.out.printf("%d단\t\t", k);
 					System.out.println();
 				}
- 				for (k = i; k <= i + 2; k++)
+				for (k = i; k <= i + 2; k++)
 					System.out.printf("%d * %d = %2d \t", k, j, k * j);
-				System.out.printf("\n");
+				System.out.println();
 			}
-			System.out.printf("\n");
+			System.out.println();
 		}
-		System.out.printf("\n");
-	}
 
+	}
 }

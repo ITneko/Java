@@ -9,17 +9,17 @@ public class Ex09 {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		
-		double x, y, rx, ry, r, a, b, distance;
+		int x, y, rx, ry;
+		double r, a, b, distance;
 
 		System.out.print("원의 중심과 반지름 입력>>");
-		x = sc.nextDouble();
-		y = sc.nextDouble();
+		x = sc.nextInt();
+		y = sc.nextInt();
 		r = sc.nextDouble();
 
 		System.out.print("점 입력>>");
-		rx = sc.nextDouble();
-		ry = sc.nextDouble();
+		rx = sc.nextInt();
+		ry = sc.nextInt();
 
 		a = Math.pow((x - rx), 2);
 		b = Math.pow((y - ry), 2);

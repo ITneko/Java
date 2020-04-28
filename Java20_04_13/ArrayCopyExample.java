@@ -1,4 +1,4 @@
-package ExampleJava20_04_13;
+package Java20_04_13;
 
 public class ArrayCopyExample {
 

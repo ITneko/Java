@@ -1,7 +1,7 @@
 package JavaM_Chapter03_Example;
 
 //while 문은 반복횟수를 알지 못하는 경우에 이용된다고 했다 .
-//while문을 이용하여 -1이 입력될때까지 정수를 계속 ㅌ입력받아 합을 구하고 평군을 출력하는 프로그램을 작성하라
+//while문을 이용하여 -1이 입력될때까지 정수를 계속 입력받아 합을 구하고 평군을 출력하는 프로그램을 작성하라
 import java.util.Scanner;
 
 public class Ex01 {

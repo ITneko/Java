@@ -1,4 +1,4 @@
-package ExampleJava20_04_28;
+package Good_JAVA_Chapter08;
 
 import java.util.Scanner;
 
