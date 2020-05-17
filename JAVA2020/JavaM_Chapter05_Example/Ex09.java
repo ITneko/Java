@@ -1,5 +1,6 @@
 package JavaM_Chapter05_Example;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class StackApp implements Stack {
@@ -38,13 +39,22 @@ class StackApp implements Stack {
 }
 
 public class Ex09 {
-
+	static StackApp stack;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("총 스텍 저장 공간의 크기 입력 >>");
-		int size = sc.nextInt();
-		StackApp stack = new StackApp(size);
+		while (true) {
+			try {
+				System.out.print("총 스텍 저장 공간의 크기 입력 >>");
+				int size = sc.nextInt();
+				if(size > 0)
+					stack = new StackApp(size);
+					break;
+			} catch (InputMismatchException e) {
+				System.out.println("숫자를 입력해주세요.");
+				sc.nextLine();
+			}
+		}
 
 		while (true) {
 			System.out.print("문자열 입력>>");
