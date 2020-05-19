@@ -6,7 +6,7 @@ public class CheckedExample {
 
 	public static void main(String[] args) {
 
-		System.out.println("データを入力されるプログラムです。");
+		System.out.println("データを入力してもらうプログラムです。");
 		
 		byte[] data = new byte[100]; //一度に100byteづつ読み込む
 		
