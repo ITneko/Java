@@ -20,31 +20,29 @@ public class Member_Exam {
 		Scanner sc = new Scanner(System.in);
 		MemberData data = new MemberData();
 		int cnt = 0;
-		while (cnt < 10) {
-			System.out.print("자료입력 " + (cnt+1) + ": ");
-			String str = sc.nextLine();
-			if (str.charAt(0) == 'e' || str.charAt(0) == 'E')
+		while(cnt<10) {
+			System.out.print("자료입력 " + (cnt+1)+ " : ");
+			String str[] = sc.nextLine().split(",");
+			if("END".equals(str[0].toUpperCase())) 
 				break;
-			String str2[] = str.split(",");
-			String name = str2[0];
-			String age2[] = str2[1].split("-");
-			String tel = str2[2];
+			String str2[] =  str[1].split("-");
+			int age;
+			if("1256".contains(str2[1])) {
+				age = 2020 - (Integer.parseInt(str2[0].substring(0,2))+1900); 
+			}else {
+				age = 2020 - (Integer.parseInt(str2[0].substring(0,2))+2000);
+			}
+			if("1357".contains(str2[1])) {
+				str[1] = "남";
+			}else {
+				str[1] = "여";
+			}
 			
-			int age = Integer.parseInt(age2[0].substring(0, 2)); // 생년월일
-			if("3478".contains(age2[1])) {
-				age = 2020-(2000+age);
-			}else
-				age = 2020-(1900+age);
-					
-			int ss = Integer.parseInt(age2[1]);	// 성별
-			String gender = data.setGender(ss);
-
-			data.member[cnt] = new Member(name,tel,gender,age);
+			data.member[cnt] = new Member(str[0],str[2],str[1],age);
 			cnt++;
 		}
 		data.cnt = cnt;
 		data.print();
-		
 	}
 
 }
