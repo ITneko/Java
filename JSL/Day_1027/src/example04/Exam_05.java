@@ -1,17 +1,7 @@
 package example04;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 /*	키보드로 이름, 전화, 나이를 입력받아서 Person 객체를 생성, 파일로 출력하는 프로그램
  * 	[입력 형식]
