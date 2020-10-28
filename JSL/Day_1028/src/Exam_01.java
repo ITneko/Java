@@ -63,16 +63,16 @@ public class Exam_01 {
 			mat += s.getMat();
 			cnt++;
 		}
-		double korAve = Math.round(kor*100./cnt)/100.;
-		double engAve = Math.round(eng*100./cnt)/100.;
-		double matAve = Math.round(mat*100./cnt)/100.;
+		double korAve = Math.round(kor * 100. / cnt) / 100.;
+		double engAve = Math.round(eng * 100. / cnt) / 100.;
+		double matAve = Math.round(mat * 100. / cnt) / 100.;
 		System.out.println("총점\t\t" + kor + "\t" + eng + "\t" + mat);
 		System.out.println("평균\t\t" + korAve + "\t" + engAve + "\t" + matAve);
 	}
 
 	public static void exit(TreeSet set) {
 		try {
-			File f = new File("/Users/uneko/data/stduent.dat");
+			File f = new File("/Users/uneko/data/student.dat");
 			FileOutputStream fos = new FileOutputStream(f);
 			BufferedOutputStream bos = new BufferedOutputStream(fos);
 			ObjectOutputStream oos = new ObjectOutputStream(bos);
@@ -93,7 +93,7 @@ public class Exam_01 {
 
 	public static void main(String[] args) {
 		try {
-			File f = new File("/Users/uneko/data/stduent.dat");
+			File f = new File("/Users/uneko/data/student.dat");
 			Object obj = null;
 			TreeSet<Student> set = null;
 			if (!f.exists()) {
@@ -102,19 +102,17 @@ public class Exam_01 {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			}
+			FileInputStream fis = new FileInputStream(f);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			int ok = bis.available();
+			if (ok != 0) {
+				ObjectInputStream ois = new ObjectInputStream(bis);
+				obj = ois.readObject();
+				set = (TreeSet) obj;
+
 			} else {
-				FileInputStream fis = new FileInputStream(f);
-				BufferedInputStream bis = new BufferedInputStream(fis);
-				int ok = bis.available();
-				if (ok != 0) {
-					ObjectInputStream ois = new ObjectInputStream(bis);
-					obj = ois.readObject();
-					set = (TreeSet) obj;
-
-				}else {
-					set = new TreeSet<Student>();
-				}
-
+				set = new TreeSet<Student>();
 			}
 
 			while (true) {
