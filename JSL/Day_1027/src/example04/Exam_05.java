@@ -34,8 +34,6 @@ public class Exam_05 {
 		}
 	}
 
-	
-
 	public static void exit(List list) {
 		try {
 			File f = new File("/Users/uneko/data/student.dat");
@@ -60,12 +58,26 @@ public class Exam_05 {
 
 		try {
 			File f = new File("/Users/uneko/data/student.dat");
-			FileInputStream fis = new FileInputStream(f);
-			BufferedInputStream bis = new BufferedInputStream(fis);
-			ObjectInputStream ois = new ObjectInputStream(bis);
-			Object obj = ois.readObject();
-			List list = (List) obj;
-
+			Object obj = null;
+			List list = null;
+			if (!f.exists()) {
+				try {
+					f.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				FileInputStream fis = new FileInputStream(f);
+				BufferedInputStream bis = new BufferedInputStream(fis);
+				int ok = bis.available();
+				if (ok != 0) {
+					ObjectInputStream ois = new ObjectInputStream(bis);
+					obj = ois.readObject();
+					list = (List) obj;
+				} else {
+					list = new ArrayList();
+				}
+			}
 			while (true) {
 				System.out.print("1.등록, 2.전체보기, 3.종료 :");
 				int select = sc.nextInt();
@@ -81,9 +93,9 @@ public class Exam_05 {
 				case 3:
 					exit(list);
 					break;
-					default:
-						System.out.println("잘못된 값입니다.");
-						break;
+				default:
+					System.out.println("잘못된 값입니다.");
+					break;
 				}
 
 			}
