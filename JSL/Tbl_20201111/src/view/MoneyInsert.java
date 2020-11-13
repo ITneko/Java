@@ -26,7 +26,6 @@ public class MoneyInsert {
 		Scanner sc = new Scanner(System.in);
 		Tbl_DAO DAO = Tbl_DAO.getInstance();
 		Money_VO money = null;
-		boolean bool = false;
 		System.out.println("회원번호, 판매번호, 단가, 수량, 가격, 상품코드, 판매일자");
 		while (true) {
 			String custnos = sc.next().trim();

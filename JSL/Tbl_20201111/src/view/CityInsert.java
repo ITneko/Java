@@ -9,21 +9,25 @@ import vo.City_VO;
 
 public class CityInsert {
 	public static void main(String[] args) {
+		Tbl_DAO DAO = Tbl_DAO.getInstance();
 		Scanner sc = new Scanner(System.in);
-		List<City_VO> x = new ArrayList<City_VO>();
 		City_VO city = null;
+		int row = 0;
 		System.out.println("도시코드와 도시명을 입력하시오.");
-		while(true) {
+		while (true) {
 			city = new City_VO();
 			city.setCity(sc.next());
-			if(city.getCity().equals("00")) break;
+			if (city.getCity().equals("00"))
+				break;
 			city.setCityname(sc.next());
-			x.add(city);
+			row = DAO.insertCity(city);
+			if (row == 1) {
+				System.out.println("등록 성공");
+			} else {
+				System.out.println("등록 실패");
+			}
 		}
-		System.out.println("입력완료");
-		Tbl_DAO DAO = Tbl_DAO.getInstance();
-		DAO.setCity(x);
-		
+
 	}
-	
+
 }

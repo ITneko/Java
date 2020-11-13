@@ -9,6 +9,7 @@ public class Member_VO {
 	private String grade;
 	private String city;
 	private String stringTemp;
+	private int intTemp;
 	
 	public int getCustno() {
 		return custno;
@@ -58,6 +59,12 @@ public class Member_VO {
 	}
 	public void setStringTemp(String stringTemp) {
 		this.stringTemp = stringTemp;
+	}
+	public int getIntTemp() {
+		return intTemp;
+	}
+	public void setIntTemp(int intTemp) {
+		this.intTemp = intTemp;
 	}
 
 	

@@ -8,13 +8,12 @@ import vo.Member_VO;
 public class MemberInsert {
 
 	public static void main(String[] args)  {
-		List<Member_VO> x = new ArrayList<Member_VO>();
 		Member_VO member = null;
 		Tbl_DAO DAO = Tbl_DAO.getInstance();
 		int count = DAO.cityCount();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("회원번호(정수 6자리 이내), 회원성명, 연락처, 성별(M,F), 가입일자, 고객등급(A~C), 도시코드(01~"+count+")");
-		
+		int row = 0;
 		
 		while (true) {
 			member = new Member_VO();
@@ -28,10 +27,15 @@ public class MemberInsert {
 			member.setGrade(sc.next().trim());
 			member.setCity(sc.next().trim());
 
-			x.add(member);
+			row = DAO.insertMember(member);
+			if(row==1) {
+				System.out.println("등록 성공");
+			}else {
+				System.out.println("등록 실패");
+			}
 		}
 		
-		DAO.setMember(x);
+		
 
 	}
 }
