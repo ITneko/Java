@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import utr.DBUtil;
 import vo.Dept_VO;
@@ -119,5 +121,69 @@ public class Tbl_DAO {
 			}
 		}
 		return count;
+	}
+	
+	public Person_VO sawonSearch(int sawon) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Person_VO person = null;
+		String sql = "select name, duty, phone, indate, dname from tbl_person_201116 a, tbl_dept_201116 b where a.dcode=b.dcode and sawon=?";
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, sawon);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				person = new Person_VO();
+				person.setName(rs.getNString(1));
+				person.setDuty(rs.getString(2));
+				person.setPhone(rs.getString(3));
+				person.setIndate(rs.getString(4));
+				person.setStringTemp(rs.getString(5));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return person;
+	}
+	
+	public List<Dept_VO> dept_SawonList() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Dept_VO> eList = new ArrayList<Dept_VO>();
+		Dept_VO dept = null;
+		String sql = "select b.dcode, dname, inwon, count(a.dcode) inw from tbl_person_201116 a, tbl_dept_201116 b where a.dcode=b.dcode group by b.dcode,dname,inwon,a.dcode order by inw desc";
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dept = new Dept_VO();
+				dept.setDcode(rs.getString(1));
+				dept.setDname(rs.getString(2));
+				dept.setInwon(rs.getInt(3));
+				dept.setIntTemp(rs.getInt(4));
+				eList.add(dept);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return eList;
 	}
 }

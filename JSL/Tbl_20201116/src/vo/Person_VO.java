@@ -10,6 +10,7 @@ public class Person_VO {
 	private String indate;
 	private String outdate;
 	private String dcode;
+	private String stringTemp;
 	public int getSawon() {
 		return sawon;
 	}
@@ -51,6 +52,12 @@ public class Person_VO {
 	}
 	public void setDcode(String dcode) {
 		this.dcode = dcode;
+	}
+	public String getStringTemp() {
+		return stringTemp;
+	}
+	public void setStringTemp(String stringTemp) {
+		this.stringTemp = stringTemp;
 	}
 	
 	

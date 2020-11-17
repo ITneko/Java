@@ -4,6 +4,8 @@ public class Dept_VO {
 	private String dcode;
 	private String dname;
 	private int inwon;
+	private int intTemp;
+	
 	public String getDcode() {
 		return dcode;
 	}
@@ -21,6 +23,12 @@ public class Dept_VO {
 	}
 	public void setInwon(int inwon) {
 		this.inwon = inwon;
+	}
+	public int getIntTemp() {
+		return intTemp;
+	}
+	public void setIntTemp(int intTemp) {
+		this.intTemp = intTemp;
 	}
 	
 	
