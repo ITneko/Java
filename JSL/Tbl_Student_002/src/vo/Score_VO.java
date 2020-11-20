@@ -5,6 +5,8 @@ public class Score_VO {
 	private int kor;
 	private int eng;
 	private int mat;
+	private int sum;
+	private double avg;
 	public String getHakbun() {
 		return hakbun;
 	}
@@ -29,6 +31,18 @@ public class Score_VO {
 	public void setMat(int mat) {
 		this.mat = mat;
 	}
-	
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+	public double getAvg() {
+		return avg;
+	}
+	public void setAvg(double avg) {
+		this.avg = avg;
+	}
+
 	
 }
