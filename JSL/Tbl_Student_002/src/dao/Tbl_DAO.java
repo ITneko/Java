@@ -8,6 +8,8 @@ import java.util.List;
 
 import utr.DBUtil;
 import view.RsList;
+import vo.Score2_VO;
+import vo.Score3_VO;
 import vo.Score_VO;
 import vo.Student_VO;
 
@@ -129,7 +131,7 @@ public class Tbl_DAO {
 		Student_VO student = null;
 		Score_VO score = null;
 		ResultSet rs = null;
-		String sql = "select a.hakbun, name, case when gender='M' then '남' when gender='F' then '여' end as gender, kor, eng, mat, sum(kor+eng+mat) sum, round(((kor+eng+mat)/3),2) avg from tbl_student_002 a, tbl_score_002 b where a.hakbun=b.hakbun group by a.hakbun, name,gender, kor, eng, mat";
+		String sql = "select a.hakbun, name, case when gender='M' then '남' when gender='F' then '여' end as gender, kor, eng, mat, (kor+eng+mat) sum, round(((kor+eng+mat)/3),2) avg from tbl_student_002 a, tbl_score_002 b where a.hakbun=b.hakbun group by a.hakbun, name,gender, kor, eng, mat";
 		
 		try {
 			conn = DBUtil.getConnection();
@@ -168,7 +170,121 @@ public class Tbl_DAO {
 		RsList rsList = new RsList(sList, cList);
 		return rsList;
 	}
-
+	public Score2_VO scoreList2() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		Score2_VO score = null;
+		ResultSet rs = null;
+		String sql = "select sum(kor), sum(eng), sum(mat), round(avg(kor),2), round(avg(eng),2), round(avg(mat),2) from tbl_score_002";
+		
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				score = new Score2_VO();
+				score.setKorsum(rs.getInt(1));
+				score.setEngsum(rs.getInt(2));
+				score.setMatsum(rs.getInt(3));
+				score.setKoravg(rs.getDouble(4));
+				score.setEngavg(rs.getDouble(5));
+				score.setMatavg(rs.getDouble(6));
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return score;
+	}
+	
+	public List<Score3_VO> scoreList3() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		List<Score3_VO> sList = new ArrayList<Score3_VO>();
+		Score3_VO score = null;
+		ResultSet rs = null;
+		String sql = "select substr(hakbun,0,2), sum(kor), sum(eng), sum(mat),round(avg(kor),2),round(avg(eng),2), round(avg(mat),2) from tbl_score_002 group by substr(hakbun,0,2)";
+		
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				score = new Score3_VO();
+				score.setHakbun(rs.getString(1));
+				score.setKorsum(rs.getInt(2));
+				score.setEngsum(rs.getInt(3));
+				score.setMatsum(rs.getInt(4));
+				score.setKoravg(rs.getDouble(5));
+				score.setEngavg(rs.getDouble(6));
+				score.setMatavg(rs.getDouble(7));
+				
+				sList.add(score);
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return sList;
+	}
+	
+	public List<Score3_VO> scoreList4() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		List<Score3_VO> sList = new ArrayList<Score3_VO>();
+		Score3_VO score = null;
+		ResultSet rs = null;
+		String sql = "select substr(hakbun,0,1), sum(kor), sum(eng), sum(mat),round(avg(kor),2),round(avg(eng),2), round(avg(mat),2) from tbl_score_002 group by substr(hakbun,0,1)";
+		
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				score = new Score3_VO();
+				score.setHakbun(rs.getString(1));
+				score.setKorsum(rs.getInt(2));
+				score.setEngsum(rs.getInt(3));
+				score.setMatsum(rs.getInt(4));
+				score.setKoravg(rs.getDouble(5));
+				score.setEngavg(rs.getDouble(6));
+				score.setMatavg(rs.getDouble(7));
+				
+				sList.add(score);
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return sList;
+	}
 }
 
 
